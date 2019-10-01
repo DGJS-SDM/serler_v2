@@ -17,17 +17,14 @@ class App extends Component {
       </BrowserRouter>
     );
   }
-}
+
 
 // when component mounts, first thing it does is fetch all existing data in our db
   // then we incorporate a polling logic so that we can easily see if our db has
   // changed and implement those changes into our UI
   componentDidMount() {
     this.getDataFromDb();
-    if (!this.state.intervalIsSet) {
-      let interval = setInterval(this.getDataFromDb, 1000);
-      this.setState({ intervalIsSet: interval });
-    }
+
   }
 
   // never let a process live forever
@@ -51,8 +48,9 @@ class App extends Component {
       .then((data) => data.json())
       .then((res) => this.setState({ data: res.data }));
   };
-
+}
 export default App;
+
 
 //cách tạo file app
 //b1: import các màn hình, thư viện cần sử dụng để làm router
