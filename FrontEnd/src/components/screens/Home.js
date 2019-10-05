@@ -16,7 +16,7 @@ class Home extends Component {
     //Declare and set default values for state
     this.state = {
       search: "",
-      method: "undefined",
+      method: "",
       from: new Date(),
       to: new Date(),
       checkBox: {
