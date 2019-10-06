@@ -65,39 +65,77 @@ export const getDataByCondition = condition => dispatch => {
     }
   ];
 
-  const newData = data.filter(queryBuilder(condition));
-  console.log(newData);
-  getDataSuccess(dispatch, newData);
+  if(condition.filterAuthor.checked || condition.filterAuthor.checked || condition.filterTitle.checked)
+  {
+    const newData = data.filter(queryBuilder(condition));
+    console.log(newData);
+    getDataSuccess(dispatch, newData);
+  }
+  else
+  {
+    getDataSuccess(dispatch, data);
+  }
 };
 
 function queryBuilder(condition)
 {
+  var authIsChecked = condition.filterAuthor.checked;
+  var pubIsChecked = condition.filterPublisher.checked;
+  var titIsChecked = condition.filterTitle.checked;
   //Variables to hold results from each query - used to simplify return value
-  var authorFilter;
-  var titleFilter;
-  var pubFilter;
+  var authQuery;
+  var titQuery;
+  var pubQuery;
 
   //This function applies to each element of the json array
   return function(x)
   {
-    if(condition.filterAuthor.checked)
+    if(authIsChecked)
     {
       console.log("Filter author is checked")
-      authorFilter = x.author.toLowerCase().includes(condition.filterAuthor.text.toLowerCase());
+      authQuery = x.author.toLowerCase().includes(condition.filterAuthor.text.toLowerCase());
     }
-    if(condition.filterTitle.checked)
+    if(titIsChecked)
     {
       console.log("Filter Title is checked")
-      titleFilter = x.title.toLowerCase().includes(condition.filterTitle.text.toLowerCase());
+      titQuery = x.title.toLowerCase().includes(condition.filterTitle.text.toLowerCase());
     }
-    if(condition.filterPublisher.checked)
+    if(pubIsChecked)
     {
       console.log("Filter publisher is checked")
-      pubFilter = x.publisher.toLowerCase().includes(condition.filterPublisher.text.toLowerCase());
-    } 
-    
+      pubQuery = x.publisher.toLowerCase().includes(condition.filterPublisher.text.toLowerCase());
+    }
+
+    if(authIsChecked && titIsChecked && pubIsChecked) // if all 3 are checked
+    {
+      return authQuery && titQuery && pubQuery;
+    }
+    else if (authIsChecked && titIsChecked && !pubIsChecked) //if author and title is checked
+    {
+      return authQuery && titQuery;
+    }
+    else if( authIsChecked && !titIsChecked && pubIsChecked) // if author and publisher is checked
+    {
+      return authQuery && pubQuery;
+    }
+    else if(!authIsChecked && titIsChecked && pubIsChecked) // if publisher and title is checked
+    {
+      return pubQuery && titQuery;
+    }
+    else if (authIsChecked && !titIsChecked && !pubIsChecked) //if author is checked
+    {
+      return authQuery;
+    }
+    else if( !authIsChecked && titIsChecked && !pubIsChecked) // if title is checked
+    {
+      return titQuery;
+    }
+    else if(!authIsChecked && !titIsChecked && pubIsChecked) // if publisher is checked
+    {
+      return pubQuery;
+    }
     //Needs work to change return value depending on what is checked
-    return authorFilter && titleFilter && pubFilter;
+    return null;
   }
 }
 
