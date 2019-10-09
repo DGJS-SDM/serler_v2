@@ -15,6 +15,7 @@ class Home extends Component {
     super(props);
     //Declare and set default values for state
     this.state = {
+      articles: [],
       search: "",
       method: "",
       from: new Date(),
@@ -324,9 +325,9 @@ class Home extends Component {
               <select
                 className="browser-default"
                 onChange={e => {
-                  this.onDropDownMethodChange(e);
+                  this.onDropDownMethodChange(e); //MODULE EXPORTS
                 }}
-              >
+              > 
                 <option value="undefined">Select Methodology</option>
                 <option value="Option01">Option 1</option>
                 <option value="Option02">Option 2</option>
@@ -614,25 +615,25 @@ class Home extends Component {
     // Check the conditions of the checkboxes in order to selected columns only
     let columns = [];
     if (checkBox.title) {
-      columns = [...columns, { title: "Title", field: "title" }];
+      columns = [...columns, { title: "Title", field: "article_title" }];
     }
     if (checkBox.author) {
-      columns = [...columns, { title: "Author", field: "author" }];
+      columns = [...columns, { title: "Author", field: "article_authors" }];
     }
     if (checkBox.type) {
-      columns = [...columns, { title: "Type", field: "type" }];
+      columns = [...columns, { title: "Type", field: "article_publication_type" }];
     }
     if (checkBox.issuedOn) {
-      columns = [...columns, { title: "Issued on", field: "issuedOn" }];
+      columns = [...columns, { title: "Issued on", field: "article_year" }];
     }
     if (checkBox.publisher) {
-      columns = [...columns, { title: "Publisher", field: "publisher" }];
+      columns = [...columns, { title: "Publisher", field: "article_publication" }];
     }
     if (checkBox.doi) {
-      columns = [...columns, { title: "DOI", field: "doi" }];
+      columns = [...columns, { title: "DOI", field: "article_doi" }];
     }
     if (checkBox.rating) {
-      columns = [...columns, { title: "Rating", field: "rating" }];
+      columns = [...columns, { title: "Rating", field: "article_rating" }];
     }
 
     // Set the initial value of 'search' function

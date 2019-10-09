@@ -15,7 +15,7 @@ import * as serviceWorker from "./serviceWorker";
 
 //tạo một cái 'store', mà để tạo được store này thì cần truyền biến 'rootReducer' - để chứa
 //tất cả reducer
-const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 //hãy render ra 1 app mà trong đó có 1 rổ producers. Mà cái rổ này lấy dữ liệu từ props thuộc cái
 //store được tạo ở trên
 ReactDOM.render(

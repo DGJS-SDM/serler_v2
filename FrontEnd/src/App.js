@@ -3,8 +3,17 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/screens/Login";
 import Home from "./components/screens/Home";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { setDataSuccess } from './actions/home.action'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      articles: []
+    }
+  }
   render() {
     return (
       <BrowserRouter>
@@ -48,10 +57,23 @@ class App extends Component {
       .then(results => results.json())
       .then(data => this.setState({ articles: data }))
       .catch(function(err) {console.log(err)});
-  }
-  
+  }  
 }
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    data: state.homeReducer.data
+  };
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    {
+      setDataSuccess
+    }
+  )
+)(App);
 
 
 //cách tạo file app

@@ -13,6 +13,11 @@ const initState = {
           ...state,
           data: action.data
         };
+      case "filter_data":
+        return{
+          ...state,
+          data: action.data
+        };
       default:
         return state;
     }
