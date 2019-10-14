@@ -27,13 +27,11 @@ class App extends Component {
     );
   }
 
-
-// when component mounts, first thing it does is fetch all existing data in our db
+  // when component mounts, first thing it does is fetch all existing data in our db
   // then we incorporate a polling logic so that we can easily see if our db has
   // changed and implement those changes into our UI
   componentDidMount() {
     this.getDataFromDb();
-
   }
 
   // never let a process live forever
@@ -44,12 +42,7 @@ class App extends Component {
       this.setState({ intervalIsSet: null });
     }
   }
-
-  // just a note, here, in the front end, we use the id key of our data object
-  // in order to identify which we want to Update or delete.
-  // for our back end, we use the object id assigned by MongoDB to modify
-  // data base entries
-
+  
   // our first get method that uses our backend api to
   // fetch data from our data base
    getDataFromDb() {
@@ -74,9 +67,3 @@ export default compose(
     }
   )
 )(App);
-
-
-//cách tạo file app
-//b1: import các màn hình, thư viện cần sử dụng để làm router
-//b2: tạo ra 1 router
-//b3: khai báo đường dẫn vào từng màn hình

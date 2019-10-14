@@ -54,7 +54,6 @@ class Home extends Component {
   }
 
   // -------------------------- FUNCTIONS --------------------------
-
   // Set the value of Title checkbox
   toggleTitleCheckBox = () => {
     const { checkBox } = this.state;

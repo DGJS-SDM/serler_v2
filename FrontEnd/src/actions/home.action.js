@@ -8,8 +8,8 @@ The above three ^^^^^ have .text, .value and .checked properties
 .checked is if toggled
 condition.method
 condition.search
-
 */
+
 // -------------------------- GET DATA --------------------------
 export const getDataByCondition = condition => dispatch => {
   console.log(condition);
