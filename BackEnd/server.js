@@ -11,7 +11,6 @@ app.use(express.json());
 
 // this is our MongoDB database
 const dbRoute =
-  //'mongodb+srv://sysAdmin:Sjgd1234@tbl-users-y6efw.mongodb.net/test?retryWrites=true&w=majority';
   'mongodb+srv://sysAdmin:Sjgd1234@cluster0-qvark.mongodb.net/db_articles?retryWrites=true&w=majority';
 
 // connects our back end code with the database
